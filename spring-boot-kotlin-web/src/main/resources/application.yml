@@ -6,9 +6,9 @@ spring:
       username: ${DB_USERNAME:postgres}
       password: ${DB_PASSWORD:postgres}
       driver-class-name: org.postgresql.Driver
-      jdbc-url: jdbc:postgresql://localhost:5432/postgres?ApplicationName=test-app&TimeZone=Asia/Seoul
+      jdbc-url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/postgres?ApplicationName=kotlin-web-jsp&TimeZone=Asia/Seoul
       # driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-      # jdbc-url: jdbc:log4jdbc:postgresql://localhost:5432/postgres?ApplicationName=test-app&TimeZone=Asia/Seoul
+      # jdbc-url: jdbc:log4jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/postgres?ApplicationName=kotlin-web-jsp&TimeZone=Asia/Seoul
       pool-name: main-db
       connection-timeout: 6000
       maximum-pool-size: 10
@@ -45,7 +45,7 @@ spring:
       username: ${DB_USERNAME:postgres}
       password: ${DB_PASSWORD:postgres}
       driver-class-name: org.postgresql.Driver
-      jdbc-url: jdbc:postgresql://localhost:5432/postgres?ApplicationName=test-app&TimeZone=Asia/Seoul
+      jdbc-url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/postgres?ApplicationName=kotlin-web-jsp&TimeZone=Asia/Seoul
 
 ---
 spring:
@@ -57,4 +57,4 @@ spring:
       username: ${DB_USERNAME:postgres}
       password: ${DB_PASSWORD:postgres}
       driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-      jdbc-url: jdbc:log4jdbc:postgresql://localhost:5432/postgres?ApplicationName=test-app&TimeZone=Asia/Seoul
+      jdbc-url: jdbc:log4jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/postgres?ApplicationName=kotlin-web-jsp&TimeZone=Asia/Seoul

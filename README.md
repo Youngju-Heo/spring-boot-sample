@@ -12,7 +12,11 @@
   * MyBatis
   * log4j2
   * i18n
-  * PostgreSQL
+  * PostgreSQL jdbc
+  * Zuul gateway 2.2.10.RELEASE
+  * jQuery 3.6.1
+  * Bootstrap 5.2
+  * Bootstrap icons 1.6.1
 
 * 기타
   * spring-boot-java-web

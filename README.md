@@ -13,3 +13,10 @@
   * log4j2
   * i18n
   * PostgreSQL
+
+* 기타
+  * spring-boot-java-web
+    * JAVA 언어 기반 구현 예제
+	* lombok annotation 도구 활용
+  * spring-boot-kotlin-web
+    * Kotlin 언어 기반 구현 예제

@@ -1,0 +1,60 @@
+spring:
+  profiles:
+    default: prod
+  datasource:
+    hikari:
+      username: ${DB_USERNAME:postgres}
+      password: ${DB_PASSWORD:postgres}
+      driver-class-name: org.postgresql.Driver
+      jdbc-url: jdbc:postgresql://localhost:5432/postgres?ApplicationName=test-app&TimeZone=Asia/Seoul
+      # driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      # jdbc-url: jdbc:log4jdbc:postgresql://localhost:5432/postgres?ApplicationName=test-app&TimeZone=Asia/Seoul
+      pool-name: main-db
+      connection-timeout: 6000
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 60000
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  application:
+    name: spring-boot-web-jsp
+  messages:
+    basename: i18n/messages
+    cache-duration: 0
+  sql:
+    init:
+      mode: always
+zuul:
+  routes:
+    get:
+      path: /get/**
+      url: https://httpbin.org/get
+app:
+  config:
+    default-locale: ko
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    hikari:
+      username: ${DB_USERNAME:postgres}
+      password: ${DB_PASSWORD:postgres}
+      driver-class-name: org.postgresql.Driver
+      jdbc-url: jdbc:postgresql://localhost:5432/postgres?ApplicationName=test-app&TimeZone=Asia/Seoul
+
+---
+spring:
+  config:
+    activate:
+      on-profile: devel
+  datasource:
+    hikari:
+      username: ${DB_USERNAME:postgres}
+      password: ${DB_PASSWORD:postgres}
+      driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      jdbc-url: jdbc:log4jdbc:postgresql://localhost:5432/postgres?ApplicationName=test-app&TimeZone=Asia/Seoul

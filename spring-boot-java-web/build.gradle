@@ -1,0 +1,68 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+    id 'java'
+    id 'war'
+}
+
+group = 'com.example'
+version = !System.getenv("VERSION") || System.getenv("VERSION").blank  ? '0.0.1-SNAPSHOT' : System.getenv("VERSION")
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    all {
+        // logback 에서 log4j2 로 변경할때 기본 포함된 패키지 제외하기 위해서
+        exclude group: 'org.apache.logging.log4j', module:'log4j-to-slf4j'
+        exclude group: 'ch.qos.logback', module: 'logback-classic'
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation("org.springframework.boot:spring-boot-starter-log4j2")
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    //=============================================================================
+    // data related
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
+    runtimeOnly 'org.postgresql:postgresql'
+    //-----------------------------------------------------------------------------
+
+    //=============================================================================
+    // zuul gateway proxy 사용하기위한 설정추가
+    implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:3.1.4'
+    // spring-cloud-starter-bootstrap 의 fix vulnerability 해결용
+    runtimeOnly 'org.bouncycastle:bcprov-jdk15on:1.70'
+    // zuul gateway package
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul:2.2.10.RELEASE'
+    // spring-cloud-starter-netflix-zuul 의 fix vulnerability 해결용
+    runtimeOnly 'com.google.guava:guava:31.1-jre'
+    //-----------------------------------------------------------------------------
+
+    //=============================================================================
+    // for jsp parsing
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    implementation 'javax.servlet:jstl:1.2'
+    //-----------------------------------------------------------------------------
+
+    //=============================================================================
+    // for log4jdbc
+    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16'
+    //-----------------------------------------------------------------------------
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

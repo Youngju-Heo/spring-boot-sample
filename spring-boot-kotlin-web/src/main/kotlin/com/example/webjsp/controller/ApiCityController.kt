@@ -26,7 +26,7 @@ class ApiCityController {
 
   @GetMapping("/select-all")
   fun selectAll(): List<HashMap<String, Any>> {
-    val cities = cityService.selectAll();
+    val cities = cityService.selectAll()
     log.debug("get /select-all")
     return cities
   }

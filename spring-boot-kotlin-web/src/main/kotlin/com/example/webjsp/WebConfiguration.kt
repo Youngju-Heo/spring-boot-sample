@@ -11,27 +11,27 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor
 import java.util.*
 
 @Configuration
-class WebConfiguration: WebMvcConfigurer {
+class WebConfiguration : WebMvcConfigurer {
 
-    @Bean
-    fun appConfig():AppConfig {
-        return AppConfig()
-    }
+  @Bean
+  fun appConfig(): AppConfig {
+    return AppConfig()
+  }
 
-    @Bean
-    fun localeResolver(@Autowired appConfig: AppConfig): LocaleResolver? {
-        val resolver = CookieLocaleResolver()
-        resolver.setDefaultLocale(Locale(appConfig.defaultLocale))
-        resolver.cookiePath = "/"
-        resolver.cookieName = "user-locale"
-        val ageInSeconds = 30 * 24 * 60 * 60
-        resolver.cookieMaxAge = ageInSeconds
-        return resolver
-    }
+  @Bean
+  fun localeResolver(@Autowired appConfig: AppConfig): LocaleResolver? {
+    val resolver = CookieLocaleResolver()
+    resolver.setDefaultLocale(Locale(appConfig.defaultLocale))
+    resolver.cookiePath = "/"
+    resolver.cookieName = "user-locale"
+    val ageInSeconds = 30 * 24 * 60 * 60
+    resolver.cookieMaxAge = ageInSeconds
+    return resolver
+  }
 
-    override fun addInterceptors(registry: InterceptorRegistry) {
-        val lci = LocaleChangeInterceptor()
-        lci.paramName = "lang"
-        registry.addInterceptor(lci)
-    }
+  override fun addInterceptors(registry: InterceptorRegistry) {
+    val lci = LocaleChangeInterceptor()
+    lci.paramName = "lang"
+    registry.addInterceptor(lci)
+  }
 }

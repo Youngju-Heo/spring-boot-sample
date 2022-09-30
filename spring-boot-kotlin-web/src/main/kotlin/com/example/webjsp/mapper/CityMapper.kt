@@ -8,7 +8,7 @@ import kotlin.collections.HashMap
 
 @Mapper
 interface CityMapper {
-    fun selectCity(@Param("id") id: UUID): City
-    fun selectAll(): List<HashMap<String, Any>>
-    fun selectCount(): Int
+  fun selectCity(@Param("id") id: UUID): City
+  fun selectAll(): List<HashMap<String, Any>>
+  fun selectCount(): Int
 }

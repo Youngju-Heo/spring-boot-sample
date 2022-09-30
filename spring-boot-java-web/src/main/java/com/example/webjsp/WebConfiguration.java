@@ -18,39 +18,39 @@ import java.util.Locale;
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
 
-    @Bean
-    public AppConfig appConfig() {
-        return new AppConfig();
-    }
+  @Bean
+  public AppConfig appConfig() {
+    return new AppConfig();
+  }
 
-    @Bean
-    public LocaleResolver localeResolver(@Autowired AppConfig appConfig) {
-        CookieLocaleResolver resolver = new CookieLocaleResolver();
-        resolver.setDefaultLocale(new Locale(appConfig.defaultLocale));
-        resolver.setCookiePath("/");
-        resolver.setCookieName("user-locale");
-        int ageInSeconds = 30 * 24 * 60 * 60;
-        resolver.setCookieMaxAge(ageInSeconds);
-        return resolver;
-    }
+  @Bean
+  public LocaleResolver localeResolver(@Autowired AppConfig appConfig) {
+    CookieLocaleResolver resolver = new CookieLocaleResolver();
+    resolver.setDefaultLocale(new Locale(appConfig.defaultLocale));
+    resolver.setCookiePath("/");
+    resolver.setCookieName("user-locale");
+    int ageInSeconds = 30 * 24 * 60 * 60;
+    resolver.setCookieMaxAge(ageInSeconds);
+    return resolver;
+  }
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
-        lci.setParamName("lang");
-        registry.addInterceptor(lci);
-    }
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+    LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+    lci.setParamName("lang");
+    registry.addInterceptor(lci);
+  }
 
-    @Bean
-    @Order(Ordered.HIGHEST_PRECEDENCE)
-    public FilterRegistrationBean<CharacterEncodingFilter> characterEncodingFilterRegistration() {
-        CharacterEncodingFilter filter = new CharacterEncodingFilter();
-        filter.setEncoding("UTF-8"); // use your preferred encoding
-        filter.setForceEncoding(true); // force the encoding
+  @Bean
+  @Order(Ordered.HIGHEST_PRECEDENCE)
+  public FilterRegistrationBean<CharacterEncodingFilter> characterEncodingFilterRegistration() {
+    CharacterEncodingFilter filter = new CharacterEncodingFilter();
+    filter.setEncoding("UTF-8"); // use your preferred encoding
+    filter.setForceEncoding(true); // force the encoding
 
-        FilterRegistrationBean<CharacterEncodingFilter> registrationBean =
-                new FilterRegistrationBean<>(filter); // register the filter
-        registrationBean.addUrlPatterns("/*"); // set preferred url
-        return registrationBean;
-    }
+    FilterRegistrationBean<CharacterEncodingFilter> registrationBean =
+      new FilterRegistrationBean<>(filter); // register the filter
+    registrationBean.addUrlPatterns("/*"); // set preferred url
+    return registrationBean;
+  }
 }

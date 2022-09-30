@@ -14,16 +14,17 @@ import java.util.List;
 @Controller
 public class CityController {
 
-    private final CityService cityService;
-    public CityController(@Autowired CityService cityService) {
-        this.cityService = cityService;
-    }
+  private final CityService cityService;
 
-    @GetMapping("/city/list")
-    public String list(Model model) {
-        List<HashMap<String, Object>> items = cityService.selectAll();
-        model.addAttribute("cityItems", items);
-        log.debug("/city/list items: {}",items);
-        return "city/list";
-    }
+  public CityController(@Autowired CityService cityService) {
+    this.cityService = cityService;
+  }
+
+  @GetMapping("/city/list")
+  public String list(Model model) {
+    List<HashMap<String, Object>> items = cityService.selectAll();
+    model.addAttribute("cityItems", items);
+    log.debug("/city/list items: {}", items);
+    return "city/list";
+  }
 }

@@ -16,21 +16,21 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 @Controller
 public class HomeController {
 
-    @GetMapping("/")
-    public String index(Model model) {
-        String userLocale = LocaleContextHolder.getLocale().getLanguage();
-        log.info("/index: {}\n{}", userLocale, LocaleContextHolder.getLocale());
-        model.addAttribute("message", "Welcome to Simple Solution home page!");
-        return "index";
-    }
+  @GetMapping("/")
+  public String index(Model model) {
+    String userLocale = LocaleContextHolder.getLocale().getLanguage();
+    log.info("/index: {}\n{}", userLocale, LocaleContextHolder.getLocale());
+    model.addAttribute("message", "Welcome to Simple Solution home page!");
+    return "index";
+  }
 
-    @GetMapping("/user/list")
-    public String userList(Model model) {
-        String userLocale = LocaleContextHolder.getLocale().getLanguage();
-        log.info("/user/list: {}", userLocale);
-        if (model == null) {
-            log.warn("model not be null");
-        }
-        return "user/list";
+  @GetMapping("/user/list")
+  public String userList(Model model) {
+    String userLocale = LocaleContextHolder.getLocale().getLanguage();
+    log.info("/user/list: {}", userLocale);
+    if (model == null) {
+      log.warn("model not be null");
     }
+    return "user/list";
+  }
 }

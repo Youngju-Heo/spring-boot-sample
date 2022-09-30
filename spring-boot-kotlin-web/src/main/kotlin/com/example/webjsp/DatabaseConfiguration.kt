@@ -14,30 +14,30 @@ import javax.sql.DataSource
 @Configuration
 class DatabaseConfiguration {
 
-    @ConfigurationProperties(prefix = "spring.datasource.hikari")
-    @Bean
-    fun hikariConfig(): HikariConfig {
-        return HikariConfig()
-    }
+  @ConfigurationProperties(prefix = "spring.datasource.hikari")
+  @Bean
+  fun hikariConfig(): HikariConfig {
+    return HikariConfig()
+  }
 
-    @Bean
-    fun dataSource(): DataSource {
-        return HikariDataSource(hikariConfig())
-    }
+  @Bean
+  fun dataSource(): DataSource {
+    return HikariDataSource(hikariConfig())
+  }
 
-    @Bean
-    @Throws(Exception::class)
-    fun getSqlSessionFactory(dataSource: DataSource?): SqlSessionFactory? {
-        val sessionFactory = SqlSessionFactoryBean()
-        sessionFactory.setDataSource(dataSource)
-        val resolver = PathMatchingResourcePatternResolver()
-        sessionFactory.setMapperLocations(*resolver.getResources("classpath:mapper/**/*.xml"))
-        sessionFactory.setConfigLocation(resolver.getResource("classpath:mybatis-config.xml"))
-        return sessionFactory.getObject()
-    }
+  @Bean
+  @Throws(Exception::class)
+  fun getSqlSessionFactory(dataSource: DataSource?): SqlSessionFactory? {
+    val sessionFactory = SqlSessionFactoryBean()
+    sessionFactory.setDataSource(dataSource)
+    val resolver = PathMatchingResourcePatternResolver()
+    sessionFactory.setMapperLocations(*resolver.getResources("classpath:mapper/**/*.xml"))
+    sessionFactory.setConfigLocation(resolver.getResource("classpath:mybatis-config.xml"))
+    return sessionFactory.getObject()
+  }
 
-    @Bean
-    fun getSqlSessionTemplate(sqlSessionFactory: SqlSessionFactory?): SqlSessionTemplate {
-        return SqlSessionTemplate(sqlSessionFactory)
-    }
+  @Bean
+  fun getSqlSessionTemplate(sqlSessionFactory: SqlSessionFactory?): SqlSessionTemplate {
+    return SqlSessionTemplate(sqlSessionFactory)
+  }
 }

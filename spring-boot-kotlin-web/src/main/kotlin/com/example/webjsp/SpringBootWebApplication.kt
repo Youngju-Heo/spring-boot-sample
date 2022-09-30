@@ -11,5 +11,5 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy
 class SpringBootWebApplication
 
 fun main(args: Array<String>) {
-    runApplication<SpringBootWebApplication>(*args)
+  runApplication<SpringBootWebApplication>(*args)
 }

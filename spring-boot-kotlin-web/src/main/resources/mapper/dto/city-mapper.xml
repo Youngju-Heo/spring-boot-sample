@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.webjsp.mapper.CityMapper">
-    <resultMap id="city" type="com.example.webjsp.model.City">
-        <result property="id"      column="id" typeHandler="UUIDTypeHandler"/>
-        <result property="name"    column="name"/>
-        <result property="state"   column="state"/>
-        <result property="country" column="country"/>
-        <result property="insTime" column="ins_time"/>
-    </resultMap>
+  <resultMap id="city" type="com.example.webjsp.model.City">
+    <result property="id" column="id" typeHandler="UUIDTypeHandler"/>
+    <result property="name" column="name"/>
+    <result property="state" column="state"/>
+    <result property="country" column="country"/>
+    <result property="insTime" column="ins_time"/>
+  </resultMap>
 
-    <resultMap id="cityMap" type="hashmap">
-        <result property="id"      column="id" typeHandler="UUIDTypeHandler"/>
-        <result property="name"    column="name"/>
-        <result property="state"   column="state"/>
-        <result property="country" column="country"/>
-        <result property="insTime" column="ins_time"/>
-    </resultMap>
-    <!-- id 기반 쿼리 -->
-    <select id="selectCity" resultMap="city">
-        select *
-        from city
-        where id = #{id}
-    </select>
+  <resultMap id="cityMap" type="hashmap">
+    <result property="id" column="id" typeHandler="UUIDTypeHandler"/>
+    <result property="name" column="name"/>
+    <result property="state" column="state"/>
+    <result property="country" column="country"/>
+    <result property="insTime" column="ins_time"/>
+  </resultMap>
+  <!-- id 기반 쿼리 -->
+  <select id="selectCity" resultMap="city">
+    select *
+    from city
+    where id = #{id}
+  </select>
 
-    <!-- 전체 처리용 쿼리 -->
-    <select id="selectAll" resultMap="cityMap">
-        select *
-        from city
-    </select>
+  <!-- 전체 처리용 쿼리 -->
+  <select id="selectAll" resultMap="cityMap">
+    select *
+    from city
+  </select>
 
-    <!-- 전체 수량을 구하는 함수 -->
-    <select id="selectCount" resultType="int">
-        select count(1) totcnt
-        from city
-    </select>
+  <!-- 전체 수량을 구하는 함수 -->
+  <select id="selectCount" resultType="int">
+    select count(1) totcnt
+    from city
+  </select>
 </mapper>

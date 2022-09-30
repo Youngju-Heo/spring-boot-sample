@@ -17,26 +17,26 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/city")
 public class ApiCityController {
-    private final CityService cityService;
+  private final CityService cityService;
 
-    public ApiCityController(@Autowired CityService cityService) {
-        this.cityService = cityService;
-    }
+  public ApiCityController(@Autowired CityService cityService) {
+    this.cityService = cityService;
+  }
 
-    @GetMapping("/select")
-    public City select(@CookieValue(value = "user-locale", defaultValue = "ko", required = false) String userLocale) {
-        log.debug("/select: locale={}", userLocale);
-        return cityService.selectCity(UUID.fromString("3013b1de-2bb7-429f-bc7e-dcc6605efb30"));
-    }
+  @GetMapping("/select")
+  public City select(@CookieValue(value = "user-locale", defaultValue = "ko", required = false) String userLocale) {
+    log.debug("/select: locale={}", userLocale);
+    return cityService.selectCity(UUID.fromString("3013b1de-2bb7-429f-bc7e-dcc6605efb30"));
+  }
 
-    @GetMapping("/select-all")
-    public List<HashMap<String, Object>> selectAll() {
-        return cityService.selectAll();
-    }
+  @GetMapping("/select-all")
+  public List<HashMap<String, Object>> selectAll() {
+    return cityService.selectAll();
+  }
 
-    @GetMapping("/select-count")
-    public int selectCount() {
-        log.debug("/select-count");
-        return cityService.selectCount();
-    }
+  @GetMapping("/select-count")
+  public int selectCount() {
+    log.debug("/select-count");
+    return cityService.selectCount();
+  }
 }

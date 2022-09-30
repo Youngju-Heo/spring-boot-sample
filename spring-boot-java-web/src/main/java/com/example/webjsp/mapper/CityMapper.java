@@ -10,7 +10,9 @@ import java.util.UUID;
 
 @Mapper
 public interface CityMapper {
-    City selectCity(@Param("id") UUID id);
-    List<HashMap<String, Object>> selectAll();
-    int   selectCount();
+  City selectCity(@Param("id") UUID id);
+
+  List<HashMap<String, Object>> selectAll();
+
+  int selectCount();
 }

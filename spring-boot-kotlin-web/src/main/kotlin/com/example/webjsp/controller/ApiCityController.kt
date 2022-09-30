@@ -14,31 +14,31 @@ import kotlin.collections.HashMap
 @RestController
 @RequestMapping("/api/city")
 class ApiCityController {
-    @Autowired
-    lateinit var cityService: CityService
+  @Autowired
+  lateinit var cityService: CityService
 
-    @GetMapping("/select")
-    fun select(): City {
-        val city = cityService.selectCity(UUID.fromString("3013b1de-2bb7-429f-bc7e-dcc6605efb30"))
-        log.debug("get /select")
-        return city
-    }
+  @GetMapping("/select")
+  fun select(): City {
+    val city = cityService.selectCity(UUID.fromString("3013b1de-2bb7-429f-bc7e-dcc6605efb30"))
+    log.debug("get /select")
+    return city
+  }
 
-    @GetMapping("/select-all")
-    fun selectAll(): List<HashMap<String, Any>> {
-        val cities =cityService.selectAll();
-        log.debug("get /select-all")
-        return cities
-    }
+  @GetMapping("/select-all")
+  fun selectAll(): List<HashMap<String, Any>> {
+    val cities = cityService.selectAll();
+    log.debug("get /select-all")
+    return cities
+  }
 
-    @GetMapping("/select-count")
-    fun selectCount(): Int {
-        val cnt = cityService.selectCount()
-        log.debug("get /select-count")
-        return cnt
-    }
+  @GetMapping("/select-count")
+  fun selectCount(): Int {
+    val cnt = cityService.selectCount()
+    log.debug("get /select-count")
+    return cnt
+  }
 
-    companion object{
-        val log: Logger = LoggerFactory.getLogger(ApiCityController::class.java)
-    }
+  companion object {
+    val log: Logger = LoggerFactory.getLogger(ApiCityController::class.java)
+  }
 }

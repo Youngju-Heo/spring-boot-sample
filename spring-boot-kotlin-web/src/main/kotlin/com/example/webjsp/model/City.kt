@@ -3,6 +3,12 @@ package com.example.webjsp.model
 import java.sql.Timestamp
 import java.util.UUID
 
+/**
+ * Data VO of City
+ *
+ * City 정보를 담는 data 클래스
+ *
+ */
 data class City(
   // ID
   var id: UUID,

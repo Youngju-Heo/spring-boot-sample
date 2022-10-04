@@ -24,6 +24,11 @@
       <AppenderRef ref="Console_Appender"/>
       <AppenderRef ref="File_Appender"/>
     </Logger>
+    <!-- HikariCP 용 -->
+    <Logger name="com.zaxxer" level="INFO" additivity="false">
+      <AppenderRef ref="Console_Appender"/>
+      <AppenderRef ref="File_Appender"/>
+    </Logger>
     <Logger name="com" level="TRACE" additivity="false">
       <AppenderRef ref="Console_Appender"/>
       <AppenderRef ref="File_Appender"/>

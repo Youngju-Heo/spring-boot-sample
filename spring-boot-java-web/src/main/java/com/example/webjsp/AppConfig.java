@@ -8,5 +8,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 @ConfigurationProperties("app.config")
 public class AppConfig {
-    String defaultLocale;
+  String defaultLocale;
 }

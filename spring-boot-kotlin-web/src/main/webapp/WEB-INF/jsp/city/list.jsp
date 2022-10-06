@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -52,10 +52,11 @@
     </nav>
   </div>
 
-  <jsp:include page="./city-item-list.jsp">
-    <jsp:param name="name" value="entity.city.name"/>
-    <jsp:param name="mode" value="view"/>
-  </jsp:include>
+  <c:set var="city_list_module" value="./city-item-list.jsp"/>
+  <c:import url="${city_list_module}">
+    <c:param name="name" value="entity.city.name"/>
+    <c:param name="mode" value="view"/>
+  </c:import>
 </div>
 </body>
 </html>
